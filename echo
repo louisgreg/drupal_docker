@@ -1,0 +1,4 @@
+./.git
+./vendor/drupal/coder/.git
+./vendor/behat/mink/.git
+./vendor/behat/mink-selenium2-driver/.git
