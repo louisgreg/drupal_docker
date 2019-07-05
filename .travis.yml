@@ -34,6 +34,6 @@ deploy:
 notifications:
   email:
     recipients:
-    - travisci@wodby.com
+    - louis.pollin@tv5monde.org
     on_success: never
     on_failure: always
