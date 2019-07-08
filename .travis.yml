@@ -1,44 +1,24 @@
 language: bash
-
 services:
 - docker
-
 env:
   matrix:
   - DRUPAL_VER=8 PHP_VER=7.3
-    #  - DRUPAL_VER=8 PHP_VER=7.2
-    #  - DRUPAL_VER=8 PHP_VER=7.1
-
 script:
 - set -e
 - make test
 - cp docker.mk Makefile
 - tar -czf docker4drupal.tar.gz docker-compose.yml docker-sync.yml Makefile .env traefik.yml
-
-# deploy:
-#   provider: releases
-#   api_key: $GITHUB_ACCESS_TOKEN
-#   overwrite: true
-#   skip_cleanup: true
-#   file_glob: true
-#   file:
-#   - docker4drupal.tar.gz
-#   on:
-#     tags: true
-#     condition: $GITHUB_RELEASE = 1
-
 deploy:
   provider: heroku
-  api_key: 
-    secure: 46724aef-f7d0-4a15-96e0-1a7c33ab080c
+  api_key:
+    secure: cXZVzK9Zz0HdaNLghdhbhw3MelY1R84+BPLcWvyi7SZvfwJXS9sEOK10Z6ci9sKHl3J+rcYbXj+Zal1aJluDWdbTp1zMTc6dWFm3qPPkaPb5qNqXa+1XWWMnGdYNZjHaqCbKvJODJ1kHA/mM3uGaxy10KfplXrcYfoDHXac/4012YWeK0Eo0N28aVDxbDlbpTrKIdhV2PvvsOhqF1xiPofZPgOPjF6gbAw9UV0zu3xLNVhbFQQo8bTyODWoW0VV2+yQDpXjBkJSq97xd1Vkx949jfNWGf2aj8JIQ5z/D01Ldm9etvu4soJbP3rygB5fq3ORnRUTF5Gz+THYXQp1n10TJIUuixyiQr9p2miM1SBbzZ/gaipVzn3WBkj7gb0xMLolGHfO5d+5ecWGwfmla0FV9f38wPqX6ZeUErOFHDuzAbcI775yGsBTDzOru0AN6tyS9rgrml63DNJk8CtGcSRfAraJlkFTsBxk06U1lPua5nwNn/iSMFDudAL1RqgDPVvFN/m2/ps90Pq4FGTVnKroKgubH91XT+LCAgqz0cxHlgdykt0Nx5V0c5IC0u8nErQn+AdAGGNQo8VW02qTS07TXRHVM5muPXXYsP2/xPnWSazJpdQN/n7fXuFueX30GEV2AetA7KQv2zxycahVVUjZsV94GuR500HNNqfTa4kQ=
   app: drupal-tv5
   overwrite: true
   skip_cleanup: true
   file_glob: true
   file:
   - docker4drupal.tar.gz
-
-
 notifications:
   email:
     recipients:
