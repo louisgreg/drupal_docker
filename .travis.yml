@@ -30,7 +30,7 @@ script:
 deploy:
   provider: heroku
   api_key: 
-    secure: 46724aef-f7d0-4a15-96e0-1a7c33ab080c
+    secure: $HEROKU_API_KEY
   app: drupal-tv5
   overwrite: true
   skip_cleanup: true
